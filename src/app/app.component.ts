@@ -7,12 +7,13 @@ import { ethers } from 'ethers';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'my-first-app';
+  wallet: ethers.Wallet | undefined;
+  provider: ethers.providers.BaseProvider | undefined;
 
-  someText = 'This is some text';
-  counter = 0;
+  constructor() {}
 
-  clickMe() {
-    this.counter++;
+  createWallet() {
+    this.provider = ethers.providers.getDefaultProvider('goerli');
+    this.wallet = ethers.Wallet.createRandom().connect(this.provider);
   }
 }
