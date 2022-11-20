@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ethers } from 'ethers';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -13,11 +14,22 @@ export class AppComponent {
   seeProposals: boolean | undefined;
   defaultState: boolean | undefined;
   proposalList: string[];
+  proposalVoteCount: number[];
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.seeProposals = false;
     this.defaultState = true;
     this.proposalList = [];
+    this.proposalVoteCount = [];
+
+    if (this.proposalList.length == 0) {
+      this.http
+        .get<string[]>('http://localhost:3000/get-proposals')
+        .subscribe((proposalArray) => {
+          console.log(proposalArray);
+          this.proposalList = proposalArray;
+        });
+    }
   }
 
   goHome() {
