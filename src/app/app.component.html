@@ -1,19 +1,45 @@
 <div class="px-4 py-5 my-5 text-center">
-  <h1 class="display-5 fw-bold">My Example Application</h1>
-  <div class="col-lg-6 mx-auto">
-    <div *ngIf="!wallet">
+  <h1 class="display-5 fw-bold">Tokenized Ballot dApp</h1>
+  <div class="col-lg-6 mx-auto py-2">
+    <div *ngIf="defaultState">
       
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
         <button type="button" class="btn btn-primary btn-lg px-4 gap-3" (click)="createWallet()">Create a Wallet</button>
         <button type="button" class="btn btn-secondary btn-lg px-4 gap-3" >Connect a Wallet</button>
-        <button type="button" class="btn btn-info btn-lg px-4 gap-3" >Whatever</button>
+        <button type="button" class="btn btn-info btn-lg px-4 gap-3" (click)="showProposals()">See Proposals</button>
       </div>
-    </div>
+    </div> 
     
 
-    <div *ngIf="wallet">
-      <p class="lead mb-4">Wallet address is: {{wallet.address}}</p>
+    <div *ngIf="randomWallet">
+      <p class="lead mb-4">Wallet address is: {{randomWallet.address}}</p>
+
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <button type="button" class="btn btn-secondary py-10" (click)="mintTokens('random')">Mint tokens</button>
+        <button type="button" class="btn btn-secondary py-10" (click)="getVotingPower('random')">Get voting power</button>
+      </div>
 
     </div>
+
+    <div *ngIf="userWallet">
+      <p class="lead mb-4">Wallet address is: {{userWallet.address}}</p>
+
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <button type="button" class="btn btn-secondary py-10" (click)="mintTokens('user')">Mint tokens</button>
+        <button type="button" class="btn btn-secondary py-10" (click)="getVotingPower('user')">Get voting power</button>
+      </div>
+
+    </div>
+
+  <div *ngIf="seeProposals">
+  <p>The proposal list will be visible here!</p>
+</div>
+
+
+
+
+  </div>
+  <div class="px-10 py-20">
+    <button type="button" class="btn btn-info py-10" (click)="goHome()">Home Screen</button>
   </div>
 </div>
