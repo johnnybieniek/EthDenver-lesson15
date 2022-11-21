@@ -13,6 +13,9 @@
 
     <div *ngIf="randomWallet">
       <p class="lead mb-4">Wallet address is: {{randomWallet.address}}</p>
+      <p class="lead mb-4">Your account balance is: {{userBalance}} tokens</p>
+      <p class="lead mb-4">Your voting power is: {{userVotingPower}} votes</p>
+      
 
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
         <button type="button" class="btn btn-secondary py-10" (click)="mintTokens('random')">Mint tokens</button>
